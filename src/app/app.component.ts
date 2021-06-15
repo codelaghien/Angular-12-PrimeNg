@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,14 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Angular12PrimeNg';
-  items: MenuItem[] = [];
+  public title = 'Angular12PrimeNg';
+  public items: MenuItem[] = [];
+  public notes = null;
+  public selectedNote: any;
 
-  ngOnInit() {
+  constructor(private dataService: DataService) {}
+
+  public ngOnInit() {
     this.items = [
       {
         label: 'File',
@@ -33,5 +38,14 @@ export class AppComponent {
         ],
       },
     ];
+
+    this.dataService.getNotes(1).subscribe((data) => {
+      this.notes = data;
+    });
+  }
+
+  public editNote(note: any) {
+    console.log('edit note', note);
+    this.selectedNote = note;
   }
 }
