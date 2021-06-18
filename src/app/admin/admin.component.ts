@@ -64,7 +64,7 @@ export class AdminComponent implements OnInit {
       return;
     }
     this.dataService.postLink(this.newLink).subscribe((link) => {
-      // console.log('result ', Link);
+      // console.log('result link', link);
       this.links?.push(link);
       this.newLink = undefined;
       this.messageService.add({

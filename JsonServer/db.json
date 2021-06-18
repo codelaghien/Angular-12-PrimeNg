@@ -1,10 +1,54 @@
 {
+  "links": [
+    {
+      "id": 2,
+      "title": "google",
+      "link": "https://google.com",
+      "author": "Huy Nguyễn",
+      "authorId": 1
+    },
+    {
+      "id": 3,
+      "title": "yahoo",
+      "link": "https://yahoo.com",
+      "author": "Huy Nguyễn",
+      "authorId": 1
+    },
+    {
+      "id": 4,
+      "title": "codelaghien",
+      "link": "https://www.youtube.com/channel/UCY_iEJzJ9HKBHt6Ipl7insQ/community",
+      "author": "Huy Nguyễn",
+      "authorId": 1
+    },
+    {
+      "id": 5,
+      "title": "apple",
+      "link": "https://apple.com",
+      "author": "Huy Nguyễn",
+      "authorId": 1
+    }
+  ],
   "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
   ],
   "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 },
-    { "id": 2, "body": "some comment 2", "postId": 2 }
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "id": 2,
+      "body": "some comment 2",
+      "postId": 2
+    }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "name": "typicode"
+  }
 }
