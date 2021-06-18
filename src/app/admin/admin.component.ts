@@ -20,7 +20,11 @@ export class AdminComponent implements OnInit {
     private messageService: MessageService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataService.getLinks(this.authorId).subscribe((data: Link[]) => {
+      this.links = data;
+    });
+  }
 
   public viewLink(link: Link): void {
     console.log('view Link', link);
