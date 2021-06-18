@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { DataService } from './data.service';
 import { Note } from './note.model';
 
@@ -7,6 +7,7 @@ import { Note } from './note.model';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  providers: [MessageService],
 })
 export class AppComponent {
   public title = 'Angular12PrimeNg';
@@ -14,10 +15,14 @@ export class AppComponent {
   public notes: Note[] | undefined;
   public selectedNote: Note | undefined;
   private authorId = 1;
+  public newNote: Note | undefined;
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private messageService: MessageService
+  ) {}
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.items = [
       {
         label: 'File',
@@ -46,8 +51,52 @@ export class AppComponent {
     });
   }
 
-  public viewNote(note: Note) {
+  public viewNote(note: Note): void {
     console.log('view note', note);
     this.selectedNote = note;
+  }
+
+  public getSelectedClass(note: Note): string {
+    if (!this.selectedNote) {
+      return '';
+    }
+    return this.selectedNote.id === note.id ? 'selected' : 'nonSelected';
+  }
+
+  public addNote(): void {
+    console.log('addNote');
+    this.newNote = {
+      id: 0,
+      title: '',
+      note: '',
+      author: 'Huy Nguyễn',
+      authorId: this.authorId,
+    };
+  }
+
+  public cancelAddNote(): void {
+    this.newNote = undefined;
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Thông báo',
+      detail: 'Đã hủy',
+    });
+  }
+
+  public saveNote(): void {
+    // console.log('save Note', this.newNote);
+    if (!this.newNote) {
+      return;
+    }
+    this.dataService.postNote(this.newNote).subscribe((note) => {
+      // console.log('result ', note);
+      this.notes?.push(note);
+      this.newNote = undefined;
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Thông báo',
+        detail: 'Đã thêm thành công',
+      });
+    });
   }
 }

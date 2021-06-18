@@ -22,7 +22,7 @@ export class DataService {
     return this.httpClient.get<Note[]>(url, this.httpOptions);
   }
 
-  public postNote(payload: any): Observable<Note> {
+  public postNote(payload: Note): Observable<Note> {
     const url = `${this.REST_API_SERVER}/notes`;
     return this.httpClient.post<Note>(url, payload, this.httpOptions);
   }
