@@ -8,6 +8,11 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { MenubarModule } from 'primeng/menubar';
 import { SplitterModule } from 'primeng/splitter';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminComponent } from './admin/admin.component';
@@ -21,6 +26,11 @@ import { AdminComponent } from './admin/admin.component';
     CardModule,
     MenubarModule,
     SplitterModule,
+    InputTextareaModule,
+    MessagesModule,
+    MessageModule,
+    ConfirmDialogModule,
+    ToastModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
