@@ -1,0 +1,46 @@
+<div>
+  <h1>Đây là bài thi trắc nghiệm</h1>
+  <p-panel
+    [toggleable]="true"
+    [collapsed]="collapsed"
+    *ngFor="let question of questions; let i = index"
+  >
+    <ng-template pTemplate="header">
+      <div>
+        <i
+          class="pi pi-check"
+          style="font-size: 1.5rem; color: rgb(6, 206, 6); font-weight: bold"
+          *ngIf="+answers[i] > 0"
+        ></i>
+        Câu số
+        {{ i + 1 }}
+      </div>
+    </ng-template>
+    <span style="font-weight: bold">
+      {{ question.question }}
+    </span>
+    <br /><br />
+    <span *ngFor="let answer of question.answers; let i2 = index">
+      <p-radioButton
+        value="{{ i2 + 1 }}"
+        inputId="answer{{ i2 + 1 }}"
+        [(ngModel)]="answers[i]"
+        (click)="test()"
+      >
+      </p-radioButton>
+      <label for="answer1">{{ i2 + 1 }}. {{ answer }}</label>
+      <br />
+    </span>
+  </p-panel>
+  <br />
+  <p-button
+    label="Kiểm tra kết quả"
+    icon="pi pi-check"
+    [disabled]="!traLoiHet()"
+    (click)="kiemTraKetQua()"
+  ></p-button>
+  <br />
+  <span style="font-size: xx-large; color: blue">Kết quả: {{ percentCorrect }}</span>
+</div>
+
+<p-toast></p-toast>

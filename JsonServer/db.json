@@ -1,4 +1,72 @@
 {
+  "questions": [
+    {
+      "id": 1,
+      "question": "Thiết bị nào sau đây dùng để kết nối mạng?",
+      "answers": [
+        "Ram",
+        "Rom",
+        "Router",
+        "CPU"
+      ],
+      "correctAnswer": 3
+    },
+    {
+      "id": 2,
+      "question": "Hệ thống nhớ của máy tính bao gồm:",
+      "answers": [
+        "Bộ nhớ trong, Bộ nhớ ngoài",
+        "Cache, Bộ nhớ ngoài",
+        "Bộ nhớ ngoài, ROM",
+        "Đĩa quang, Bộ nhớ trong"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "id": 3,
+      "question": "Trong mạng máy tính, thuật ngữ Share có ý nghĩa gì?",
+      "answers": [
+        "Chia sẻ tài nguyên",
+        "Nhãn hiệu của một thiết bị kết nối mạng",
+        "Thực hiện lệnh in trong mạng cục bộ",
+        "Một phần mềm hỗ trợ sử dụng mạng cục bộ"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "id": 4,
+      "question": "Bộ nhớ RAM và ROM là bộ nhớ gì?",
+      "answers": [
+        "Primary memory",
+        "Receive memory",
+        "Secondary memory",
+        "Random access memory."
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "id": 5,
+      "question": "Các thiết bị nào thông dụng nhất hiện nay dùng để cung cấp dữ liệu cho máy xử lý?",
+      "answers": [
+        "Bàn phím (Keyboard), Chuột (Mouse), Máy in (Printer) .",
+        "Máy quét ảnh (Scaner).",
+        "Bàn phím (Keyboard), Chuột (Mouse) và Máy quét ảnh (Scaner).",
+        "Máy quét ảnh (Scaner), Chuột (Mouse)"
+      ],
+      "correctAnswer": 3
+    },
+    {
+      "id": 6,
+      "question": "Khái niệm hệ điều hành là gì ?",
+      "answers": [
+        "Cung cấp và xử lý các phần cứng và phần mềm",
+        "Nghiên cứu phương pháp, kỹ thuật xử lý thông tin bằng máy tính điện tử",
+        "Nghiên cứu về công nghệ phần cứng và phần mềm",
+        "Là một phần mềm chạy trên máy tính, dùng để điều hành, quản lý các thiết bị phần cứng và các tài nguyên phần mềm trên máy tính"
+      ],
+      "correctAnswer": 4
+    }
+  ],
   "links": [
     {
       "id": 2,

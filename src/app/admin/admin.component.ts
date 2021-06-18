@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DataService } from '../data.service';
-import { Link } from '../link.model';
+import { Question } from '../question.model';
 
 @Component({
   selector: 'app-admin',
@@ -10,47 +10,47 @@ import { Link } from '../link.model';
   providers: [MessageService],
 })
 export class AdminComponent implements OnInit {
-  public links: Link[] | undefined;
-  public selectedLink: Link | undefined;
-  private authorId = 1;
-  public newLink: Link | undefined;
+  public questions: Question[] | undefined;
+  public selectedQuestion: Question | undefined;
+  public newQuestion: Question | undefined;
 
   constructor(
     private dataService: DataService,
     private messageService: MessageService
   ) {}
 
-  ngOnInit(): void {
-    this.dataService.getLinks(this.authorId).subscribe((data: Link[]) => {
-      this.links = data;
+  public ngOnInit(): void {
+    this.dataService.getQuestions().subscribe((data: Question[]) => {
+      this.questions = data;
     });
   }
 
-  public viewLink(link: Link): void {
-    console.log('view Link', link);
-    this.selectedLink = link;
+  public viewQuestion(question: Question): void {
+    console.log('view Question', question);
+    this.selectedQuestion = question;
   }
 
-  public getSelectedClass(link: Link): string {
-    if (!this.selectedLink) {
+  public getSelectedClass(question: Question): string {
+    if (!this.selectedQuestion) {
       return '';
     }
-    return this.selectedLink.id === link.id ? 'selected' : 'nonSelected';
+    return this.selectedQuestion.id === question.id
+      ? 'selected'
+      : 'nonSelected';
   }
 
-  public addLink(): void {
-    console.log('addLink');
-    this.newLink = {
+  public addQuestion(): void {
+    console.log('addQuestion');
+    this.newQuestion = {
       id: 0,
-      title: '',
-      link: '',
-      author: 'Huy Nguyễn',
-      authorId: this.authorId,
+      question: '',
+      answers: ['', '', '', ''],
+      correctAnswer: 0,
     };
   }
 
-  public cancelAddLink(): void {
-    this.newLink = undefined;
+  public cancelAddQuestion(): void {
+    this.newQuestion = undefined;
     this.messageService.add({
       severity: 'info',
       summary: 'Thông báo',
@@ -58,20 +58,24 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  public saveLink(): void {
-    // console.log('save Link', this.newLink);
-    if (!this.newLink) {
+  public saveQuestion(): void {
+    console.log('save Question', this.newQuestion);
+    if (!this.newQuestion) {
       return;
     }
-    this.dataService.postLink(this.newLink).subscribe((link) => {
-      // console.log('result link', link);
-      this.links?.push(link);
-      this.newLink = undefined;
+    this.dataService.postQuestion(this.newQuestion).subscribe((question) => {
+      // console.log('result question', question);
+      this.questions?.push(question);
+      this.newQuestion = undefined;
       this.messageService.add({
         severity: 'success',
         summary: 'Thông báo',
         detail: 'Đã thêm thành công',
       });
     });
+  }
+
+  public trackByFn(index: number, item: any): number {
+    return index;
   }
 }

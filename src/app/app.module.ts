@@ -16,12 +16,22 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { PanelModule } from 'primeng/panel';
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminComponent } from './admin/admin.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent, AdminComponent],
+  declarations: [
+    AppComponent,
+    PageNotFoundComponent,
+    AdminComponent,
+    TestComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,6 +47,10 @@ import { AdminComponent } from './admin/admin.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    InputNumberModule,
+    PanelModule,
+    CheckboxModule,
+    RadioButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,6 +1,6 @@
 <div class="card">
   <p-card
-    header="Rút gọn links !"
+    header="Admin cho thêm bớt câu hỏi !"
     subheader="by Huy Nguyễn"
     [style]="{ width: '100%' }"
     styleClass="p-card-shadow"
@@ -11,82 +11,111 @@
       type="button"
       icon="pi pi-plus"
       class="p-button-rounded"
-      (click)="addLink()"
+      (click)="addQuestion()"
     ></button>
     <p-splitter
-      [style]="{ height: '500px' }"
+      [style]="{ minHeight: '200px' }"
       [panelSizes]="[40, 60]"
       styleClass="p-mb-5"
     >
       <ng-template pTemplate>
         <div
           class="p-col p-d-flex p-ai-center p-jc-center"
-          style="cursor: pointer; width: 100%"
+          style="cursor: pointer; width: 100%; margin: 10px"
         >
-          <li *ngIf="newLink" style="cursor: pointer">
-            {{ newLink.title }}
+          <li *ngIf="newQuestion" style="cursor: pointer">
+            {{ newQuestion.question }}
             <br />
-            <span style="font-style: italic; margin-left: 30px">{{
-              newLink.link.toString().substring(0, 20)
-            }}</span>
+            <span style="font-style: italic; margin-left: 30px">
+              <!-- {{ newQuestion.question.toString().substring(0, 20) }} -->
+            </span>
           </li>
           <li
-            *ngFor="let link of links"
+            *ngFor="let question of questions"
             style="cursor: pointer"
-            (click)="viewLink(link)"
-            [ngClass]="getSelectedClass(link)"
+            (click)="viewQuestion(question)"
+            [ngClass]="getSelectedClass(question)"
           >
-            {{ link.title }}
+            {{ question.question }}
             <br />
-            <span style="font-style: italic; margin-left: 30px">{{
-              link.link.toString().substring(0, 20)
-            }}</span>
+            <span style="font-style: italic; margin-left: 30px">
+              <!-- {{ question.question.toString().substring(0, 20) }} -->
+            </span>
           </li>
         </div>
       </ng-template>
       <ng-template pTemplate>
-        <div *ngIf="newLink" style="width: 100%">
+        <div *ngIf="newQuestion" style="width: 100%; margin: 10px">
           <br />
           <span class="p-float-label">
             <textarea
               rows="1"
               pInputTextarea
               style="width: 100%"
-              [(ngModel)]="newLink.title"
+              [(ngModel)]="newQuestion.question"
             ></textarea>
-            <label for="float-input">Title</label>
+            <label for="float-input">Câu hỏi</label>
           </span>
           <br />
-          <span class="p-float-label">
+          <br />
+          <span
+            class="p-float-label"
+            *ngFor="
+              let answer of newQuestion.answers;
+              let i = index;
+              trackBy: trackByFn
+            "
+          >
             <textarea
-              rows="5"
+              rows="2"
               pInputTextarea
               style="width: 100%"
-              [(ngModel)]="newLink.link"
+              [(ngModel)]="newQuestion.answers[i]"
             ></textarea>
-            <label for="float-input">Link</label>
+            <label for="float-input">Trả lời #{{ i + 1 }}</label>
+            <br /><br />
           </span>
           <br />
+          <label for="integeronly">Câu trả lời đúng: </label>
+          <p-inputNumber
+            inputId="integeronly"
+            [(ngModel)]="newQuestion.correctAnswer"
+          >
+          </p-inputNumber>
+          <br /><br />
           <p-button
             label="Save"
             icon="pi pi-check"
-            (click)="saveLink()"
+            (click)="saveQuestion()"
           ></p-button>
           <p-button
             label="Cancel"
             icon="pi pi-times"
             styleClass="p-button-secondary"
             [style]="{ 'margin-left': '.5em' }"
-            (click)="cancelAddLink()"
+            (click)="cancelAddQuestion()"
           ></p-button>
         </div>
         <div
           class="p-col p-d-flex p-ai-center p-jc-center"
-          *ngIf="selectedLink && !newLink"
+          *ngIf="selectedQuestion && !newQuestion"
+          style="width: 100%; margin: 10px"
         >
-          <span style="font-weight: bold">{{ selectedLink.title }}</span>
+          <span style="font-weight: bold">{{ selectedQuestion.question }}</span>
           <br /><br />
-          {{ selectedLink.link }}
+          <span
+            class="p-float-label"
+            *ngFor="
+              let answer of selectedQuestion.answers;
+              let i = index;
+              trackBy: trackByFn
+            "
+          >
+            {{ i + 1 }}. {{ answer }}
+          </span>
+          <br />
+          <label for="integeronly">Câu trả lời đúng: </label>
+          {{ selectedQuestion.correctAnswer }}
         </div>
       </ng-template>
     </p-splitter>

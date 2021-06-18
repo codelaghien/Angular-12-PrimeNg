@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Link } from './link.model';
+import { Question } from './question.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,13 +17,13 @@ export class DataService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public getLinks(authorId: number): Observable<Link[]> {
-    const url = `${this.REST_API_SERVER}/links?authorId=` + authorId;
-    return this.httpClient.get<Link[]>(url, this.httpOptions);
+  public getQuestions(): Observable<Question[]> {
+    const url = `${this.REST_API_SERVER}/questions`;
+    return this.httpClient.get<Question[]>(url, this.httpOptions);
   }
 
-  public postLink(payload: Link): Observable<Link> {
-    const url = `${this.REST_API_SERVER}/links`;
-    return this.httpClient.post<Link>(url, payload, this.httpOptions);
+  public postQuestion(payload: Question): Observable<Question> {
+    const url = `${this.REST_API_SERVER}/questions`;
+    return this.httpClient.post<Question>(url, payload, this.httpOptions);
   }
 }
