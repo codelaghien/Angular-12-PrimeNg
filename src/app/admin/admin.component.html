@@ -11,7 +11,7 @@
       type="button"
       icon="pi pi-plus"
       class="p-button-rounded"
-      (click)="addNote()"
+      (click)="addLink()"
     ></button>
     <p-splitter
       [style]="{ height: '500px' }"
@@ -23,36 +23,36 @@
           class="p-col p-d-flex p-ai-center p-jc-center"
           style="cursor: pointer; width: 100%"
         >
-          <li *ngIf="newNote" style="cursor: pointer">
-            {{ newNote.title }}
+          <li *ngIf="newLink" style="cursor: pointer">
+            {{ newLink.title }}
             <br />
             <span style="font-style: italic; margin-left: 30px">{{
-              newNote.note.toString().substring(0, 20)
+              newLink.link.toString().substring(0, 20)
             }}</span>
           </li>
           <li
-            *ngFor="let note of notes"
+            *ngFor="let link of links"
             style="cursor: pointer"
-            (click)="viewNote(note)"
-            [ngClass]="getSelectedClass(note)"
+            (click)="viewLink(link)"
+            [ngClass]="getSelectedClass(link)"
           >
-            {{ note.title }}
+            {{ link.title }}
             <br />
             <span style="font-style: italic; margin-left: 30px">{{
-              note.note.toString().substring(0, 20)
+              link.link.toString().substring(0, 20)
             }}</span>
           </li>
         </div>
       </ng-template>
       <ng-template pTemplate>
-        <div *ngIf="newNote" style="width: 100%">
+        <div *ngIf="newLink" style="width: 100%">
           <br />
           <span class="p-float-label">
             <textarea
               rows="1"
               pInputTextarea
               style="width: 100%"
-              [(ngModel)]="newNote.title"
+              [(ngModel)]="newLink.title"
             ></textarea>
             <label for="float-input">Title</label>
           </span>
@@ -62,31 +62,31 @@
               rows="5"
               pInputTextarea
               style="width: 100%"
-              [(ngModel)]="newNote.note"
+              [(ngModel)]="newLink.link"
             ></textarea>
-            <label for="float-input">Note</label>
+            <label for="float-input">Link</label>
           </span>
           <br />
           <p-button
             label="Save"
             icon="pi pi-check"
-            (click)="saveNote()"
+            (click)="saveLink()"
           ></p-button>
           <p-button
             label="Cancel"
             icon="pi pi-times"
             styleClass="p-button-secondary"
             [style]="{ 'margin-left': '.5em' }"
-            (click)="cancelAddNote()"
+            (click)="cancelAddLink()"
           ></p-button>
         </div>
         <div
           class="p-col p-d-flex p-ai-center p-jc-center"
-          *ngIf="selectedNote && !newNote"
+          *ngIf="selectedLink && !newLink"
         >
-          <span style="font-weight: bold">{{ selectedNote.title }}</span>
+          <span style="font-weight: bold">{{ selectedLink.title }}</span>
           <br /><br />
-          {{ selectedNote.note }}
+          {{ selectedLink.link }}
         </div>
       </ng-template>
     </p-splitter>
