@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Note } from './note.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +17,13 @@ export class DataService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public getNotes(authorId: number): Observable<any> {
+  public getNotes(authorId: number): Observable<Note[]> {
     const url = `${this.REST_API_SERVER}/notes?authorId=` + authorId;
-    return this.httpClient.get<any>(url, this.httpOptions);
+    return this.httpClient.get<Note[]>(url, this.httpOptions);
+  }
+
+  public postNote(payload: any): Observable<Note> {
+    const url = `${this.REST_API_SERVER}/notes`;
+    return this.httpClient.post<Note>(url, payload, this.httpOptions);
   }
 }

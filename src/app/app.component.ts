@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { DataService } from './data.service';
+import { Note } from './note.model';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,9 @@ import { DataService } from './data.service';
 export class AppComponent {
   public title = 'Angular12PrimeNg';
   public items: MenuItem[] = [];
-  public notes = null;
-  public selectedNote: any;
+  public notes: Note[] | undefined;
+  public selectedNote: Note | undefined;
+  private authorId = 1;
 
   constructor(private dataService: DataService) {}
 
@@ -39,13 +41,13 @@ export class AppComponent {
       },
     ];
 
-    this.dataService.getNotes(1).subscribe((data) => {
+    this.dataService.getNotes(this.authorId).subscribe((data: Note[]) => {
       this.notes = data;
     });
   }
 
-  public editNote(note: any) {
-    console.log('edit note', note);
+  public viewNote(note: Note) {
+    console.log('view note', note);
     this.selectedNote = note;
   }
 }
