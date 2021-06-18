@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Link } from './link.model';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,10 @@ import { MenuItem } from 'primeng/api';
 export class AppComponent {
   title = 'Angular12PrimeNg';
   items: MenuItem[] = [];
+  public links: Link[] | undefined;
+  public selectedLink: Link | undefined;
+  private authorId = 1;
+  public newLink: Link | undefined;
 
   ngOnInit() {
     this.items = [
@@ -52,7 +57,7 @@ export class AppComponent {
     this.newLink = {
       id: 0,
       title: '',
-      Link: '',
+      link: '',
       author: 'Huy Nguyễn',
       authorId: this.authorId,
     };
