@@ -34,4 +34,53 @@ export class AppComponent {
       },
     ];
   }
+
+  public viewLink(link: Link): void {
+    console.log('view Link', link);
+    this.selectedLink = link;
+  }
+
+  public getSelectedClass(link: Link): string {
+    if (!this.selectedLink) {
+      return '';
+    }
+    return this.selectedLink.id === link.id ? 'selected' : 'nonSelected';
+  }
+
+  public addLink(): void {
+    console.log('addLink');
+    this.newLink = {
+      id: 0,
+      title: '',
+      Link: '',
+      author: 'Huy Nguyễn',
+      authorId: this.authorId,
+    };
+  }
+
+  public cancelAddLink(): void {
+    this.newLink = undefined;
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Thông báo',
+      detail: 'Đã hủy',
+    });
+  }
+
+  public saveLink(): void {
+    // console.log('save Link', this.newLink);
+    if (!this.newLink) {
+      return;
+    }
+    this.dataService.postLink(this.newLink).subscribe((link) => {
+      // console.log('result ', Link);
+      this.links?.push(link);
+      this.newLink = undefined;
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Thông báo',
+        detail: 'Đã thêm thành công',
+      });
+    });
+  }
 }
